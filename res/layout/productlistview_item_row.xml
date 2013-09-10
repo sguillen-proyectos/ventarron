@@ -4,40 +4,61 @@
     android:layout_height="fill_parent"
     android:orientation="horizontal" 
     android:padding="10dp"
+    android:background="@drawable/listitem_states"
     >
     
 	<TextView android:id="@+id/prodlistitem_lblQuantity"
 	    android:layout_width="40dp"
 	    android:layout_height="40dp"
 	    android:gravity="center"
-	    android:background="#0f0"
+	    android:textColor="#FDFEFD"
+	    android:textStyle="bold"
+	    android:background="#89C83F"
 	    />
 	<LinearLayout 
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:orientation="vertical"
-	    android:paddingTop="3dp"
+	    android:paddingTop="0dp"
 		android:paddingLeft="4dp"
 	    >
 
 	    <TextView android:id="@+id/prodlistitem_lblName"
 	        android:layout_width="wrap_content"
 	        android:layout_height="match_parent"
+	        android:textStyle="bold"
+	        android:textSize="16sp"
+	        android:textColor="#fff"
 	        />
 
 	    <LinearLayout
 	        android:layout_width="match_parent"
 	        android:layout_height="fill_parent" >
-
-	        <TextView android:id="@+id/prodlistitem_lblPrice"
+	        
+	        <TextView
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
+		        android:textColor="#FE4D2D"
+		        android:textStyle="bold"
+		        android:text="@string/bs"
+		        />
+
+	        <TextView android:id="@+id/prodlistitem_lblPrice"
+		        android:layout_width="0dp"
+		        android:layout_weight="1"
+		        android:layout_height="wrap_content"
+		        android:textStyle="bold"
+		        android:textColor="#FE4D2D"
 		        />
 
 	        <TextView android:id="@+id/prodlistitem_lblCode"
-	            android:layout_width="fill_parent"
+	            android:layout_width="0dp"
+		        android:layout_weight="0.7"
 	            android:layout_height="wrap_content"
-	            android:layout_marginLeft="8dp"
+	            android:layout_marginLeft="30dp"
+	            android:textSize="16sp"
+	            android:textStyle="bold"
+	            android:textColor="#fff"
 	            />
 
 	    </LinearLayout>

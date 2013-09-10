@@ -14,6 +14,8 @@ public class Depot {
 		this.name = name;
 	}
 	
+	public Depot() {}
+	
 	public int getId() {
 		return id;
 	}
@@ -27,4 +29,8 @@ public class Depot {
 		this.name = name;
 	}
 	
+	@Override
+	public String toString() {
+		return this.name;
+	}
 }

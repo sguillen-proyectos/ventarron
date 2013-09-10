@@ -7,13 +7,13 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" 
-    android:background="#282E3A"
+    android:background="#192A56"
     >
 
 	<LinearLayout android:orientation="vertical"
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
-	    android:background="#282E3A"	    
+	    android:background="#192A56"	    
 	    >
 	    <!-- TODO: Reemplazar con las cosas necesarias -->
 
