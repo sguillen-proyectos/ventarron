@@ -1,0 +1,106 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".EditProductActivity" 
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="19sp"
+        android:text="@string/product_information" />
+    
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" 
+        >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/product_code" 
+                android:textSize="15sp"
+                />
+            
+            <EditText
+                android:id="@+id/editprod_txtCode"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" 
+                android:inputType="text"
+                android:enabled="false"
+                />
+            
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/product_name" 
+                android:textSize="15sp"
+                />
+            
+            <EditText
+                android:id="@+id/editprod_txtName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" 
+                android:inputType="text" />
+            
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/product_price" 
+                android:textSize="15sp"
+                />
+            
+            <EditText
+                android:id="@+id/editprod_txtPrice"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" 
+                android:inputType="numberDecimal" />
+            
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/product_quantity"
+                android:textSize="15sp"
+                />
+            
+            <EditText
+                android:id="@+id/editprod_txtQuantity"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" 
+                android:inputType="number" />
+            
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/product_description"
+                android:textSize="15sp"
+                />
+            
+            <EditText
+                android:id="@+id/editprod_txtDescription"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" 
+                android:inputType="textMultiLine" />
+            
+            <Button 
+                android:id="@+id/editprod_btnSaveChanges"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:text="@string/save_changes"
+                android:onClick="saveChanges"
+            	/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
