@@ -3,12 +3,14 @@ package org.inf325.ventarron;
 import java.util.List;
 
 import org.inf325.ventarron.adapters.ProductAdapter;
+import org.inf325.ventarron.dao.DbHelper;
 import org.inf325.ventarron.dao.Product;
 import org.inf325.ventarron.services.ProductService;
 import org.inf325.ventarron.utils.MessageBox;
 
+import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
+
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -22,7 +24,8 @@ import android.widget.ListView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import static org.inf325.ventarron.utils.Constants.*;
 
-public class ProductListActivity extends Activity {
+public class ProductListActivity extends OrmLiteBaseActivity<DbHelper> {
+//	private final String LOG_TAG = getClass().getSimpleName();
 	public final static String EXTRA_PRODUCT = "org.inf325.ventarron.EXTRA_PRODUCT";
 	public final static String EXTRA_MODE = "org.inf325.ventarron.EXTRA_MODE";
 	
