@@ -1,0 +1,99 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".EditClientActivity" 
+    android:orientation="vertical" 
+    android:background="#192A56"
+    >
+	
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:textSize="19sp"
+        android:text="@string/client_information" />
+    
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" 
+        >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:text="@string/client_name"
+                android:textSize="15sp"
+                />
+            
+            <EditText
+                android:id="@+id/editclient_txtName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" 
+                android:inputType="text"
+                />
+            
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:text="@string/client_email" 
+                android:textSize="15sp"
+                />
+            
+            <EditText
+                android:id="@+id/editclient_txtEmail"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" 
+                android:inputType="textEmailAddress" />
+            
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:text="@string/client_phone" 
+                android:textSize="15sp"
+                />
+            
+            <EditText
+                android:id="@+id/editclient_txtPhone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" 
+                android:inputType="phone" />
+            
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:text="@string/client_address"
+                android:textSize="15sp"
+                />
+            
+            <EditText
+                android:id="@+id/editclient_txtAddress"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" 
+                android:inputType="text" />
+            
+            <Button 
+                android:id="@+id/editclient_btnSaveChanges"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:text="@string/save_changes"
+                android:onClick="saveChanges"
+            	/>
+        </LinearLayout>
+    </ScrollView>
+    
+</LinearLayout>

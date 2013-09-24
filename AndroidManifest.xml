@@ -35,6 +35,10 @@
             android:name="org.inf325.ventarron.ClientListActivity"
             android:label="@string/title_activity_client_list" >
         </activity>
+        <activity
+            android:name="org.inf325.ventarron.EditClientActivity"
+            android:label="@string/title_activity_edit_client" >
+        </activity>
     </application>
 
 </manifest>

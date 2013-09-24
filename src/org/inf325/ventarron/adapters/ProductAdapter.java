@@ -29,7 +29,6 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		// return super.getView(position, convertView, parent);
 		View row = convertView;
 		ProductHolder holder = null;
 

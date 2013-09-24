@@ -37,7 +37,7 @@ public class EditProductActivity extends OrmLiteBaseActivity<DbHelper> {
 		loadViews();
 		
 		ProductService service = ProductServiceImpl.createService(getHelper());
-		mode = getIntent().getStringExtra(ProductListActivity.EXTRA_MODE);
+		mode = getIntent().getStringExtra(EXTRA_MODE);
 		if (mode.equals(EDIT_MODE)) {
 			productId = getIntent().getIntExtra(
 					ProductListActivity.EXTRA_PRODUCT, 0);

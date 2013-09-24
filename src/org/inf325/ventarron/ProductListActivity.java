@@ -31,8 +31,7 @@ import static org.inf325.ventarron.utils.Constants.*;
 public class ProductListActivity extends OrmLiteBaseActivity<DbHelper> {
 	private final String LOG_TAG = getClass().getSimpleName();
 	public final static String EXTRA_PRODUCT = "org.inf325.ventarron.EXTRA_PRODUCT";
-	public final static String EXTRA_MODE = "org.inf325.ventarron.EXTRA_MODE";
-
+	
 	private ListView productListView;
 	private EditText txtKeyword;
 

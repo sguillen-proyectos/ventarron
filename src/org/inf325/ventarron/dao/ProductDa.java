@@ -52,9 +52,6 @@ public class ProductDa {
 			PreparedQuery<Product> preparedQuery = query.prepare();
 			
 			result = db.query(preparedQuery);
-			
-//			System.out.println("Debug: >>> " + preparedQuery.getStatement());
-			
 		} catch (SQLException e) {
 			Log.e(getClass().getName(), "Error when filtering", e);
 		}
