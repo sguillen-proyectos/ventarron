@@ -29,11 +29,13 @@
     <string name="invalid_information">Información inválida</string>
     <string name="changes_failed">Los cambios no se realizaron</string>
     <string name="changes_ok">Cambios realizados</string>
-    
+
     <!-- Product common strings -->
-	<string name="product_code">Código</string>
-	<string name="product_name">Nombre</string>
-	<string name="product_price">Precio</string>
-	<string name="product_quantity">Cantidad</string>
-	<string name="product_description">Descripción</string>
+    <string name="product_code">Código</string>
+    <string name="product_name">Nombre</string>
+    <string name="product_price">Precio</string>
+    <string name="product_quantity">Cantidad</string>
+    <string name="product_description">Descripción</string>
+    <string name="title_activity_client_list">ClientListActivity</string>
+
 </resources>
