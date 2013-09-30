@@ -16,7 +16,7 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class EditClientActivity extends OrmLiteBaseActivity<DbHelper>{
+public class EditClientActivity extends OrmLiteBaseActivity<DbHelper> {
 	private final String LOG_TAG = getClass().getSimpleName();
 	private EditText txtName;
 	private EditText txtEmail;
@@ -24,21 +24,22 @@ public class EditClientActivity extends OrmLiteBaseActivity<DbHelper>{
 	private EditText txtAddress;
 	private String mode;
 	private int clientId;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_client);
-		
+
 		loadViews();
-		
-		ClientService clientService = ClientServiceImpl.createService(getHelper());
+
+		ClientService clientService = ClientServiceImpl
+				.createService(getHelper());
 		mode = getIntent().getStringExtra(EXTRA_MODE);
 		if (mode.equals(EDIT_MODE)) {
-			clientId = getIntent().getIntExtra(
-					ClientListActivity.EXTRA_CLIENT, 0);
-			
+			clientId = getIntent().getIntExtra(ClientListActivity.EXTRA_CLIENT,
+					0);
+
 			Client client = clientService.getClient(clientId);
 			setClientValues(client);
 		}
@@ -57,25 +58,25 @@ public class EditClientActivity extends OrmLiteBaseActivity<DbHelper>{
 		txtPhone = (EditText) findViewById(R.id.editclient_txtPhone);
 		txtAddress = (EditText) findViewById(R.id.editclient_txtAddress);
 	}
-	
+
 	private boolean isValid() {
 		String name = txtName.getText().toString().trim();
 		String phone = txtPhone.getText().toString().trim();
 		String email = txtEmail.getText().toString().trim();
-		
+
 		return (name.length() != 0 && phone.length() != 0 && email.length() != 0);
 	}
-	
+
 	private Client viewToClient() {
 		Client client = new Client();
 		client.setName(txtName.getText().toString().trim());
 		client.setEmail(txtEmail.getText().toString().trim());
 		client.setPhone(txtPhone.getText().toString().trim());
 		client.setAddress(txtAddress.getText().toString().trim());
-		
+
 		return client;
 	}
-	
+
 	private void changesDone(int resultCode) {
 		Intent intent = new Intent();
 		setResult(resultCode, intent);
@@ -88,10 +89,10 @@ public class EditClientActivity extends OrmLiteBaseActivity<DbHelper>{
 			Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 			return;
 		}
-		
+
 		ClientService service = ClientServiceImpl.createService(getHelper());
 		Client client = viewToClient();
-		
+
 		int result = CHANGES_FAIL;
 		try {
 			if (mode.equals(EDIT_MODE)) {
@@ -101,10 +102,10 @@ public class EditClientActivity extends OrmLiteBaseActivity<DbHelper>{
 				service.insert(client);
 			}
 			result = CHANGES_OK;
-		} catch(Exception e) {
+		} catch (Exception e) {
 			Log.e(LOG_TAG, "There were problems with mode: " + mode, e);
 		}
-		
+
 		changesDone(result);
 	}
 }

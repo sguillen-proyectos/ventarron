@@ -5,7 +5,7 @@
     android:orientation="vertical" 
     android:background="@drawable/listitem_states"
     >
-<LinearLayout 
+	<LinearLayout 
 	    android:layout_width="fill_parent"
 	    android:layout_height="1dp"
 	    android:background="#eee"
@@ -18,7 +18,7 @@
 	        android:layout_width="50dp"
 	        android:layout_height="50dp"
 	        >
-	        <ImageView android:src="@drawable/client_icon"
+	        <ImageView android:src="@drawable/dummy_user"
 	            android:layout_marginTop="3dp"
 	            android:contentDescription="@string/hello_world"
 	            android:layout_width="49dp"
@@ -30,6 +30,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_width="fill_parent"
 	        android:layout_marginLeft="5dp"
+	        android:layout_marginTop="8dp"
 	        >
 		    <LinearLayout
 		        android:layout_width="fill_parent"
@@ -42,9 +43,9 @@
 		                android:layout_width="0dp"
 		                android:layout_weight="1"
 		                android:layout_height="wrap_content"
-		                android:text="@string/client_name" />
+		                android:text="@string/user_name" />
 		
-		            <TextView android:id="@+id/clientlist_lblName"
+		            <TextView android:id="@+id/userlist_lblName"
 		                android:textColor="#fff"
 		                android:layout_width="0dp"
 		                android:layout_weight="2"
@@ -62,36 +63,16 @@
 		                android:layout_width="0dp"
 		                android:layout_weight="1"
 		                android:layout_height="wrap_content"
-		                android:text="@string/client_email" />
+		                android:text="@string/user_username" />
 		
-		            <TextView android:id="@+id/clientlist_lblEmail"
+		            <TextView android:id="@+id/userlist_lblUsername"
 		                android:textColor="#fff"
 		                android:layout_width="0dp"
 		                android:layout_weight="2"
 		                android:layout_height="wrap_content" />
-		
-		    </LinearLayout>
-		    <LinearLayout
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        android:orientation="horizontal" >
-		
-		            <TextView
-		                android:textStyle="bold"
-		                android:textColor="#fff"
-		                android:layout_width="0dp"
-		                android:layout_weight="1"
-		                android:layout_height="wrap_content"
-		                android:text="@string/client_phone" />
-		
-		            <TextView android:id="@+id/clientlist_lblPhone"
-		                android:textColor="#fff"
-		                android:layout_width="0dp"
-		                android:layout_weight="2"
-		                android:layout_height="wrap_content"/>
 		
 		    </LinearLayout>
 	    </LinearLayout>
-    </LinearLayout> 
+    </LinearLayout>
 
 </LinearLayout>

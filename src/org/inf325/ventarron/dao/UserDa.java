@@ -1,5 +1,6 @@
 package org.inf325.ventarron.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.util.Log;
@@ -16,6 +17,10 @@ public class UserDa {
 		this.db = db;
 	}
 	
+	public User get(int id) {
+		return db.queryForId(id);
+	}
+	
 	public User get(String username, String password) {
 		User user = null;
 		QueryBuilder<User, Integer> queryBuilder = db.queryBuilder();
@@ -28,8 +33,6 @@ public class UserDa {
 			
 			PreparedQuery<User> preparedQuery = queryBuilder.prepare();
 			user = db.queryForFirst(preparedQuery);
-			
-			System.out.println("DEBUG:>>>>> " + user);
 			
 		} catch(Exception e) {
 			Log.e(getClass().getName(), "Error when filtering", e);
@@ -45,5 +48,34 @@ public class UserDa {
 			user = result.get(0);
 		}
 		return user;
+	}
+
+	public List<User> getAll() {
+		List<User> result = new ArrayList<User>();
+		QueryBuilder<User, Integer> queryBuilder = db.queryBuilder();
+		Where<User, Integer> where = queryBuilder.where();
+		
+		try {
+			where.ne("root", true);
+			PreparedQuery<User> preparedQuery = queryBuilder.prepare();
+			
+			result = db.query(preparedQuery);
+			
+		} catch(Exception e) {
+			Log.e(getClass().getName(), "Error when filtering", e);
+		}
+		return result;
+	}
+
+	public void insert(User user) {
+		db.create(user);
+	}
+
+	public void update(User user) {
+		db.update(user);
+	}
+	
+	public void delete(User user) {
+		db.delete(user);
 	}
 }

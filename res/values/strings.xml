@@ -7,17 +7,30 @@
     <string name="action_settings">Settings</string>
     <string name="logo">Logo</string>
     <string name="hello_world">Hello world!</string>
+    <string name="permissions">Permisos</string>
+    <string name="groups">Grupos</string>
+    <string name="create">Crear</string>
+    <string name="read">Leer</string>
+    <string name="update">Actualizar</string>
+    <string name="delet">Borrar</string>
     <string name="alert">Alerta</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
     <string name="bs">Bs.</string>
     <string name="question_delete_item">Está seguro que desea eliminar este registro?</string>
+    <string name="set_permission">Adicionar o modificar permisos</string>
+    <string name="new_element">Nuevo Elemento</string>
     <string name="edit">Editar</string>
     <string name="delete">Eliminar</string>
     <string name="save_changes">Guardar cambios</string>
     <string name="invalid_information">Información inválida</string>
     <string name="changes_failed">Los cambios no se realizaron</string>
     <string name="changes_ok">Cambios realizados</string>
+    <string name="no_permissions">No se te asignaron permisos</string>
+    <string name="no_create">No tiene permisos para crear</string>
+    <string name="no_read">No tiene permisos para leer</string>
+    <string name="no_update">No tiene permisos para actualizar</string>
+    <string name="no_delete">No tiene permisos para borrar</string>
 
     <!-- Login common strings -->
     <string name="main_username">Username</string>
@@ -50,6 +63,16 @@
     <string name="client_address">Dirección:</string>
     <string name="client_phone">Teléfono:</string>
     <string name="client_newClient">Nuevo Cliente</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="title_activity_user_list">UserListActivity</string>
+
+    <!-- User common strings -->
+    <string name="users">Usuarios</string>
+    <string name="user_name">Nombre:</string>
+    <string name="user_username">Username:</string>
+    <string name="user_password">Password:</string>
+    <string name="title_activity_edit_user">EditUserActivity</string>
+    <string name="user_information">Información del Usuariop</string>
     
 
 </resources>

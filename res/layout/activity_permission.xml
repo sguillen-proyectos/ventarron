@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".PermissionActivity" 
+    android:orientation="vertical"
+    android:background="#192A56"
+    >
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/groups"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        />
+    <Spinner android:id="@+id/permission_groups"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        
+        />
+
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/permissions"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        />
+    <CheckBox android:id="@+id/permission_create"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:text="@string/create"
+        />
+    <CheckBox android:id="@+id/permission_read"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:checked="true"
+        android:text="@string/read"
+        />
+    <CheckBox android:id="@+id/permission_update"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:text="@string/update"
+        />
+    <CheckBox android:id="@+id/permission_delete"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+		android:text="@string/delete"
+        />
+    
+    <Button 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save_changes"
+        android:onClick="saveChanges"
+        />
+
+</LinearLayout>

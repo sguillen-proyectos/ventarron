@@ -8,7 +8,6 @@ import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import android.os.Bundle;
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
@@ -34,28 +33,21 @@ public class MainActivity extends OrmLiteBaseActivity<DbHelper> {
 		this.txtPassword = (EditText) findViewById(R.id.main_txtPassword);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
 	public void login(View view) {
 		String username = txtUsername.getText().toString().trim();
 		String password = txtPassword.getText().toString().trim();
 
-		if (userService.isValid(username, password)) {
+		User user = userService.get(username, password);
+		if (user != null) {
 			SessionManager session = SessionManager
 					.getInstance(getSharedPreferences(SETTINGS_FILE, 0));
 			
-			session.startSession(username);
-
-			User user = session.getSessionUser(getHelper());
-
-			Class<?> activityClass = RoleActivityMap.getActivityClass(user.getRole());
-			Intent productListIntent = new Intent(this,activityClass);
-			startActivity(productListIntent);
+			// Start a new session
+			session.startSession(user);
+			
+			// Navigate to main menu
+			Intent menuIntent = new Intent(this, MenuActivity.class);
+			startActivity(menuIntent);
 		} else {
 			AlertDialog.Builder alert = new AlertDialog.Builder(this);
 			alert.setTitle("Usuario");

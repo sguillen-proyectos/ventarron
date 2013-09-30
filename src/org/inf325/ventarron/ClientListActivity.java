@@ -4,22 +4,15 @@ import java.util.List;
 
 import org.inf325.ventarron.adapters.ClientAdapter;
 import org.inf325.ventarron.dao.Client;
-import org.inf325.ventarron.dao.DbHelper;
+import org.inf325.ventarron.dao.Role;
 import org.inf325.ventarron.services.ClientService;
 import org.inf325.ventarron.services.ClientServiceImpl;
-import org.inf325.ventarron.utils.MessageBox;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ContextMenu;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -27,9 +20,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 
 import static org.inf325.ventarron.utils.Constants.*;
 
-import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
-
-public class ClientListActivity extends OrmLiteBaseActivity<DbHelper> {
+public class ClientListActivity extends CrudActivity {
 	private final String LOG_TAG = getClass().getSimpleName();
 	public final static String EXTRA_CLIENT = "org.inf325.ventarron.EXTRA_CLIENT";
 	private EditText txtKeyword;
@@ -41,6 +32,9 @@ public class ClientListActivity extends OrmLiteBaseActivity<DbHelper> {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_client_list);
 
+		// HACK: Find a way to force setting this field
+		super.role = Role.CLIENTS_ROLE;
+		
 		loadViews();
 		initializeData();
 	}
@@ -67,68 +61,42 @@ public class ClientListActivity extends OrmLiteBaseActivity<DbHelper> {
 		clientListView.setAdapter(adapter);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.client_list, menu);
-		return true;
-	}
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch(item.getItemId()) {
-			case R.id.clientList_newClient:
-				Intent intent = new Intent(this, EditClientActivity.class);
-				intent.putExtra(EXTRA_MODE, CREATE_MODE);
-
-				startActivityForResult(intent, 1);				
-				return true;
-			default:
-				return super.onOptionsItemSelected(item);
-		}
+	public void searchClients(View view) {
+		ClientService clientService = ClientServiceImpl.createService(getHelper());
+		String keyword = txtKeyword.getText().toString();
 		
-	}
-	
-	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v,
-			ContextMenuInfo menuInfo) {
-
-		super.onCreateContextMenu(menu, v, menuInfo);
-		getMenuInflater().inflate(R.menu.clientlist_edit, menu);
+		List<Client> result = clientService.filter(keyword);
+		setListViewAdapter(result);
 	}
 
 	@Override
-	public boolean onContextItemSelected(MenuItem item) {
+	protected void onCreate() {
+		Intent intent = new Intent(this, EditClientActivity.class);
+		intent.putExtra(EXTRA_MODE, CREATE_MODE);
+
+		startActivityForResult(intent, 1);	
+	}
+
+	@Override
+	protected void onEdit(AdapterContextMenuInfo info) {
 		Client client;
-		AdapterContextMenuInfo info;
-		
-		info = (AdapterContextMenuInfo) item.getMenuInfo();
 		client = (Client) clientListView.getAdapter().getItem(info.position);
+		
+		Intent intent = new Intent(this, EditClientActivity.class);
+		intent.putExtra(EXTRA_MODE, EDIT_MODE);
+		intent.putExtra(EXTRA_CLIENT, client.getId());
 
-		switch (item.getItemId()) {
-		case R.id.edit:
-			editClient(client);
-			return true;
-		case R.id.delete:
-			confirmDeleteClient(client);
-			return true;
-		default:
-			return super.onContextItemSelected(item);
-		}
-	}
-	
-	private void confirmDeleteClient(final Client client) {
-		MessageBox.confirm(this, getString(R.string.question_delete_item),
-				getString(R.string.alert), new OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						deleteClient(client);
-					}
-				});
+		startActivityForResult(intent, 1);
 	}
 
-	private void deleteClient(Client client) {
+	@Override
+	protected void onDelete(AdapterContextMenuInfo info) {
+		Client client;
 		ClientService service = ClientServiceImpl.createService(getHelper());
 		String message = getString(R.string.changes_failed);
+		
+		client = (Client) clientListView.getAdapter().getItem(info.position);
+		
 		try {
 			service.delete(client);
 			initializeData();
@@ -138,30 +106,9 @@ public class ClientListActivity extends OrmLiteBaseActivity<DbHelper> {
 		}
 		Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 	}
-	
-	private void editClient(Client client) {
-		Intent intent = new Intent(this, EditClientActivity.class);
-		intent.putExtra(EXTRA_MODE, EDIT_MODE);
-		intent.putExtra(EXTRA_CLIENT, client.getId());
 
-		startActivityForResult(intent, 1);
-	}
-	
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		String message = getString(R.string.changes_failed);
-		if (resultCode == CHANGES_OK) {
-			initializeData();
-			message = getString(R.string.changes_ok);
-		}
-		Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-	}
-
-	public void searchClients(View view) {
-		ClientService clientService = ClientServiceImpl.createService(getHelper());
-		String keyword = txtKeyword.getText().toString();
-		
-		List<Client> result = clientService.filter(keyword);
-		setListViewAdapter(result);
+	protected void onResult() {
+		initializeData();
 	}
 }
