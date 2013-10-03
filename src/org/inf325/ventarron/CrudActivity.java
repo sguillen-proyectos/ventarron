@@ -46,9 +46,9 @@ public abstract class CrudActivity extends OrmLiteBaseActivity<DbHelper> {
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
-
 		super.onCreateContextMenu(menu, v, menuInfo);
 		getMenuInflater().inflate(R.menu.edit, menu);
+		onCustomContextMenu(menu);
 	}
 	
 	@Override
@@ -74,7 +74,8 @@ public abstract class CrudActivity extends OrmLiteBaseActivity<DbHelper> {
 			}
 			return true;
 		default:
-			return super.onContextItemSelected(item);
+			onCustomContextItemSelected(info, item.getItemId());
+			return true;
 		}
 	}
 	
@@ -128,4 +129,7 @@ public abstract class CrudActivity extends OrmLiteBaseActivity<DbHelper> {
 	protected abstract void onDelete(AdapterContextMenuInfo info);
 	
 	protected abstract void onResult();
+	
+	protected abstract void onCustomContextMenu(ContextMenu menu);
+	protected abstract void onCustomContextItemSelected(AdapterContextMenuInfo info, int menuId);
 }

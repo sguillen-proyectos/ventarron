@@ -74,5 +74,7 @@
     <string name="title_activity_edit_user">EditUserActivity</string>
     <string name="user_information">Información del Usuariop</string>
     
+    <!-- Sales common strings -->
+    <string name="start_sale">Iniciar Venta</string>
 
 </resources>

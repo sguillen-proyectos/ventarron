@@ -15,6 +15,7 @@ import org.inf325.ventarron.services.UserServiceImpl;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.View;
 import android.view.Window;
 //import android.widget.EditText;
@@ -106,4 +107,11 @@ public class UserListActivity extends CrudActivity {
 	protected void onResult() {
 		initializeData();
 	}
+	
+	@Override
+	protected void onCustomContextMenu(ContextMenu menu) {}
+
+	@Override
+	protected void onCustomContextItemSelected(AdapterContextMenuInfo info,
+			int menuId) {}
 }

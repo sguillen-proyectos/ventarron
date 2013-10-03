@@ -75,4 +75,9 @@ public class Product {
 	public void setDepot(Depot depot) {
 		this.depot = depot;
 	}
+	
+	@Override
+	public String toString() {
+		return name + "  -  Bs. " + price;
+	}
 }

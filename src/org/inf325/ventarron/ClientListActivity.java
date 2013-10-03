@@ -11,6 +11,7 @@ import org.inf325.ventarron.services.ClientServiceImpl;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
@@ -21,6 +22,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import static org.inf325.ventarron.utils.Constants.*;
 
 public class ClientListActivity extends CrudActivity {
+	private final int startSaleId = 0x1;
 	private final String LOG_TAG = getClass().getSimpleName();
 	public final static String EXTRA_CLIENT = "org.inf325.ventarron.EXTRA_CLIENT";
 	private EditText txtKeyword;
@@ -42,6 +44,7 @@ public class ClientListActivity extends CrudActivity {
 	private void loadViews() {
 		txtKeyword = (EditText) findViewById(R.id.clientlist_txtKeyword);
 		clientListView = (ListView) findViewById(R.id.clientlist);
+		clientListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 	}
 
 	private void initializeData() {
@@ -110,5 +113,26 @@ public class ClientListActivity extends CrudActivity {
 	@Override
 	protected void onResult() {
 		initializeData();
+	}
+
+	@Override
+	protected void onCustomContextMenu(ContextMenu menu) {
+		menu.add(1, this.startSaleId, 1, getString(R.string.start_sale));
+	}
+
+	@Override
+	protected void onCustomContextItemSelected(AdapterContextMenuInfo info,
+			int menuId) {
+		if (menuId != startSaleId) {
+			return;
+		}
+		Client client;
+		client = (Client) clientListView.getAdapter().getItem(info.position);
+		
+		startSale(client);
+	}
+
+	private void startSale(Client client) {
+		
 	}
 }
