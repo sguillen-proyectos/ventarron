@@ -51,9 +51,15 @@
             android:name="org.inf325.ventarron.EditUserActivity"
             android:label="@string/title_activity_edit_user" >
         </activity>
+        <activity android:name="org.inf325.ventarron.PermissionActivity" >
+        </activity>
         <activity
-            android:name="org.inf325.ventarron.PermissionActivity"
-            >
+            android:name="org.inf325.ventarron.SaleProductListActivity"
+            android:label="@string/title_activity_sale_product_list" >
+        </activity>
+        <activity
+            android:name="org.inf325.ventarron.SaleSelectedProductListActivity"
+            android:label="@string/title_activity_sale_selected_product_list" >
         </activity>
     </application>
 

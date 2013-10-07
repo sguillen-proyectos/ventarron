@@ -1,10 +1,13 @@
 package org.inf325.ventarron.dao;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "product")
-public class Product {
+public class Product implements Parcelable {
 	@DatabaseField(generatedId = true)
 	private int id;
 	@DatabaseField(unique = true, canBeNull = false)
@@ -20,6 +23,18 @@ public class Product {
 	@DatabaseField(foreign = true, canBeNull = false, foreignAutoRefresh = true)
 	private Depot depot;
 
+	public Product() {
+	}
+	
+	public Product(Parcel in) {
+		id = in.readInt();
+		code = in.readString();
+		name = in.readString();
+		description = in.readString();
+		quantity = in.readInt();
+		price = in.readDouble();
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -80,4 +95,31 @@ public class Product {
 	public String toString() {
 		return name + "  -  Bs. " + price;
 	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeInt(id);
+		dest.writeString(code);
+		dest.writeString(name);
+		dest.writeString(description);
+		dest.writeInt(quantity);
+		dest.writeDouble(price);
+	}
+	
+	public static final Parcelable.Creator<Product> CREATOR = new Parcelable.Creator<Product>() {
+		@Override
+		public Product createFromParcel(Parcel source) {
+			return new Product(source);
+		}
+
+		@Override
+		public Product[] newArray(int size) {
+			return new Product[size];
+		}
+	};
 }

@@ -75,7 +75,7 @@ public class ClientListActivity extends CrudActivity {
 	@Override
 	protected void onCreate() {
 		Intent intent = new Intent(this, EditClientActivity.class);
-		intent.putExtra(EXTRA_MODE, CREATE_MODE);
+		intent.	putExtra(EXTRA_MODE, CREATE_MODE);
 
 		startActivityForResult(intent, 1);	
 	}
@@ -83,7 +83,8 @@ public class ClientListActivity extends CrudActivity {
 	@Override
 	protected void onEdit(AdapterContextMenuInfo info) {
 		Client client;
-		client = (Client) clientListView.getAdapter().getItem(info.position);
+		ClientAdapter adapter = (ClientAdapter) clientListView.getAdapter();
+		client = (Client) adapter.getItem(info.position);
 		
 		Intent intent = new Intent(this, EditClientActivity.class);
 		intent.putExtra(EXTRA_MODE, EDIT_MODE);
@@ -133,6 +134,7 @@ public class ClientListActivity extends CrudActivity {
 	}
 
 	private void startSale(Client client) {
-		
+		Intent intent = new Intent(this, SaleProductListActivity.class);
+		startActivity(intent);
 	}
 }
