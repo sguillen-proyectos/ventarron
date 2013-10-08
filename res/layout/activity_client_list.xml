@@ -19,6 +19,8 @@
         android:textStyle="bold"
         android:textSize="17sp"
         android:text="@string/clients"
+    	android:focusable="true"
+    	android:focusableInTouchMode="true"
         />
     <LinearLayout
         android:layout_width="fill_parent"
@@ -30,6 +32,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content" 
             android:inputType="text"
+            android:hint="@string/keyword"
             />
         <Button
             android:layout_width="0dp"

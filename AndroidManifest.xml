@@ -55,11 +55,15 @@
         </activity>
         <activity
             android:name="org.inf325.ventarron.SaleProductListActivity"
-            android:label="@string/title_activity_sale_product_list" >
+            android:label="@string/title_activity_sale_product_list" 
+            android:noHistory="true"
+            >
         </activity>
         <activity
             android:name="org.inf325.ventarron.SaleSelectedProductListActivity"
-            android:label="@string/title_activity_sale_selected_product_list" >
+            android:label="@string/title_activity_sale_selected_product_list" 
+            android:noHistory="true"
+            >
         </activity>
     </application>
 

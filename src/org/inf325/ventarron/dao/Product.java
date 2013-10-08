@@ -93,7 +93,7 @@ public class Product implements Parcelable {
 	
 	@Override
 	public String toString() {
-		return name + "  -  Bs. " + price;
+		return name + "  -  QT " + quantity;
 	}
 
 	@Override

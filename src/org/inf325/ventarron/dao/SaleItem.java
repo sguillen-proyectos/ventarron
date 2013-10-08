@@ -1,9 +1,18 @@
 package org.inf325.ventarron.dao;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+@DatabaseTable(tableName = "saleitem")
 public class SaleItem {
+	@DatabaseField(generatedId = true)
 	private int id;
+	@DatabaseField(canBeNull = false)
+	private int saleId;
+	@DatabaseField(canBeNull = false)
 	private int productId;
 	private Product product;
+	@DatabaseField(canBeNull = false)
 	private int quantity;
 	
 	public int getId() {
@@ -30,5 +39,10 @@ public class SaleItem {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-	
+	public int getSaleId() {
+		return saleId;
+	}
+	public void setSaleId(int saleId) {
+		this.saleId = saleId;
+	}
 }

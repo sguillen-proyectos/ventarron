@@ -10,11 +10,12 @@
     android:background="#192A56"
     >
 
-	<LinearLayout android:orientation="vertical"
+	<LinearLayout
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
-	    android:background="#192A56"	    
-	    >
+	    android:background="#192A56"
+	    android:orientation="vertical" >
+
 	    <!-- TODO: Reemplazar con las cosas necesarias -->
 
 	    <ImageView
@@ -77,7 +78,5 @@
 	            />
 
 	    </LinearLayout>
-
 	</LinearLayout>   
-
 </RelativeLayout>

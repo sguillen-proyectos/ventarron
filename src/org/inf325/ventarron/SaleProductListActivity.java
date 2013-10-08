@@ -20,7 +20,9 @@ import android.widget.Toast;
 
 public class SaleProductListActivity extends OrmLiteBaseActivity<DbHelper> {
 	public static final String EXTRA_SELECTED_PRODUCT_LIST = "org.inf325.ventarron.EXTRA_SELECTED_PRODUCT_LIST";
+	public static final String EXTRA_CLIENT = "org.inf325.ventarron.EXTRA_CLIENT";
 	private ListView productListView;
+	private int clientId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +30,15 @@ public class SaleProductListActivity extends OrmLiteBaseActivity<DbHelper> {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sale_product_list);
 
+		loadExtraData();
 		loadViews();
 		initializeData();
+		
+	}
+	
+	private void loadExtraData() {
+		Intent intent = getIntent();
+		clientId = intent.getIntExtra(ClientListActivity.EXTRA_CLIENT, 0);
 	}
 
 	private void initializeData() {
@@ -49,22 +58,23 @@ public class SaleProductListActivity extends OrmLiteBaseActivity<DbHelper> {
 	}
 
 	public void continueSale(View view) {
-		SaleProductAdapter adapter; 
+		SaleProductAdapter adapter;
 		adapter = (SaleProductAdapter) productListView.getAdapter();
-		
+
 		ArrayList<Product> products = adapter.getCheckedItems();
-		
+
 		if (products.size() > 0) {
-			Intent intent = new Intent(this,SaleSelectedProductListActivity.class);
-			
+			Intent intent = new Intent(this,
+					SaleSelectedProductListActivity.class);
+
 			String extra = EXTRA_SELECTED_PRODUCT_LIST;
-			intent.putParcelableArrayListExtra(extra,products);
-			
+			intent.putExtra(EXTRA_CLIENT, clientId);
+			intent.putParcelableArrayListExtra(extra, products);
+
 			startActivity(intent);
-		} else { 
-			Toast.makeText(this,
-				 "No se seleccionó ningún elemento.", Toast.LENGTH_SHORT).show(); 
+		} else {
+			Toast.makeText(this, getString(R.string.sale_no_products_selected),
+					Toast.LENGTH_SHORT).show();
 		}
-		
 	}
 }

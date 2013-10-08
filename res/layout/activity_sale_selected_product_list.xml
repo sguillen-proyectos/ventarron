@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/sale_select_products"
+        android:text="@string/sale_add_quantity"
         android:textColor="#fff"
         android:textSize="17sp"
         android:textStyle="bold" />
@@ -29,6 +29,8 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/finish_sale" />
+        android:text="@string/finish_sale"
+        android:onClick="finishSale"
+         />
 
 </LinearLayout>

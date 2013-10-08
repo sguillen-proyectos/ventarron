@@ -28,6 +28,8 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
 	private RuntimeExceptionDao<Client, Integer> clientDao;
 	private RuntimeExceptionDao<UserRole, Integer> userRoleDao;
 	private RuntimeExceptionDao<Role, String> roleDao;
+	private RuntimeExceptionDao<Sale, Integer> saleDao;
+	private RuntimeExceptionDao<SaleItem, Integer> saleItemDao;
 
 	public DbHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -55,6 +57,8 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.createTable(connectionSource, Depot.class);
 			TableUtils.createTable(connectionSource, Product.class);
 			TableUtils.createTable(connectionSource, Client.class);
+			TableUtils.createTable(connectionSource, Sale.class);
+			TableUtils.createTable(connectionSource, SaleItem.class);
 		} catch (SQLException e) {
 			Log.e(LOG_TAG, "Can\'t create tables.", e);
 			throw new RuntimeException(e);
@@ -115,6 +119,8 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
 
 		try {
 			TableUtils.dropTable(connectionSource, Client.class, true);
+			TableUtils.dropTable(connectionSource, SaleItem.class, true);
+			TableUtils.dropTable(connectionSource, Sale.class, true);
 			TableUtils.dropTable(connectionSource, Product.class, true);
 			TableUtils.dropTable(connectionSource, Depot.class, true);
 			TableUtils.dropTable(connectionSource, User.class, true);
@@ -194,6 +200,28 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
 			productDao = getRuntimeExceptionDao(Product.class);
 		}
 		return productDao;
+	}
+	
+	/**
+	 * Return the Data Access Object for Sale class
+	 * @return
+	 */
+	public RuntimeExceptionDao<Sale, Integer> getSaleDao() {
+		if (saleDao == null) {
+			saleDao = getRuntimeExceptionDao(Sale.class);
+		}
+		return saleDao;
+	}
+	
+	/**
+	 * Return the Data Access Object for SaleItem class
+	 * @return
+	 */
+	public RuntimeExceptionDao<SaleItem, Integer> getSaleItemDao() {
+		if (saleItemDao == null) {
+			saleItemDao = getRuntimeExceptionDao(SaleItem.class);
+		}
+		return saleItemDao;
 	}
 	
 	private void createUserInitialData() {

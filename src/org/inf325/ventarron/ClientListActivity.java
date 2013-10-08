@@ -135,6 +135,7 @@ public class ClientListActivity extends CrudActivity {
 
 	private void startSale(Client client) {
 		Intent intent = new Intent(this, SaleProductListActivity.class);
+		intent.putExtra(EXTRA_CLIENT, client.getId());
 		startActivity(intent);
 	}
 }
