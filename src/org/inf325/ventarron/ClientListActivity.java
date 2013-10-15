@@ -35,6 +35,7 @@ public class ClientListActivity extends CrudActivity {
 		setContentView(R.layout.activity_client_list);
 
 		// HACK: Find a way to force setting this field
+		// something like dependency injection
 		super.role = Role.CLIENTS_ROLE;
 		
 		loadViews();
@@ -44,7 +45,7 @@ public class ClientListActivity extends CrudActivity {
 	private void loadViews() {
 		txtKeyword = (EditText) findViewById(R.id.clientlist_txtKeyword);
 		clientListView = (ListView) findViewById(R.id.clientlist);
-		clientListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+//		clientListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 	}
 
 	private void initializeData() {
@@ -119,23 +120,39 @@ public class ClientListActivity extends CrudActivity {
 	@Override
 	protected void onCustomContextMenu(ContextMenu menu) {
 		menu.add(1, this.startSaleId, 1, getString(R.string.start_sale));
+		menu.add(1, SALE_REPORT_MENU_ID, 1, getString(R.string.sale_report));
 	}
 
 	@Override
 	protected void onCustomContextItemSelected(AdapterContextMenuInfo info,
 			int menuId) {
-		if (menuId != startSaleId) {
-			return;
-		}
 		Client client;
 		client = (Client) clientListView.getAdapter().getItem(info.position);
 		
-		startSale(client);
+		switch (menuId) {
+		case startSaleId:
+			startSale(client);	
+			break;
+		case  SALE_REPORT_MENU_ID:
+			saleReport(client);
+			break;
+		default:
+			break;
+		}
+		
 	}
 
 	private void startSale(Client client) {
 		Intent intent = new Intent(this, SaleProductListActivity.class);
 		intent.putExtra(EXTRA_CLIENT, client.getId());
+		startActivity(intent);
+	}
+	
+	private void saleReport(Client client) {
+		Intent intent = new Intent(this, SaleReportActivity.class);
+		intent.putExtra(EXTRA_REPORT_MODE, SALE_REPORT_CLIENT);
+		intent.putExtra(EXTRA_REPORT_FILTER_ID, client.getId());
+		
 		startActivity(intent);
 	}
 }

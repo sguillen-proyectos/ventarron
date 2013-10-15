@@ -16,6 +16,15 @@ public class MessageBox {
 	public static final String YES_TEXT = "Si";
 	public static final String NO_TEXT = "No";
 	public static final String OK_TEXT = "Ok";
+	
+	public static void alert(Context context, String message, String title) {
+		AlertDialog.Builder alert = new AlertDialog.Builder(context);
+		alert.setMessage(message);
+		alert.setTitle(title);
+		alert.setPositiveButton(OK_TEXT, null);
+		
+		alert.show();
+	}
 
 	public static void confirm(Context context, String message, String title,
 			OnClickListener okAction) {

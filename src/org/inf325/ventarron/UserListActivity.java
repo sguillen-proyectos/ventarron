@@ -1,8 +1,6 @@
 package org.inf325.ventarron;
 
-import static org.inf325.ventarron.utils.Constants.CREATE_MODE;
-import static org.inf325.ventarron.utils.Constants.EDIT_MODE;
-import static org.inf325.ventarron.utils.Constants.EXTRA_MODE;
+import static org.inf325.ventarron.utils.Constants.*;
 
 import java.util.List;
 
@@ -26,7 +24,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 public class UserListActivity extends CrudActivity {
 	private final String LOG_TAG = getClass().getSimpleName();
 	public final static String EXTRA_USER = "org.inf325.ventarron.EXTRA_USER";
-//	private EditText txtKeyword;
+	// private EditText txtKeyword;
 	private ListView userListView;
 
 	@Override
@@ -42,7 +40,7 @@ public class UserListActivity extends CrudActivity {
 	}
 
 	private void loadViews() {
-//		txtKeyword = (EditText) findViewById(R.id.userlist_txtKeyword);
+		// txtKeyword = (EditText) findViewById(R.id.userlist_txtKeyword);
 		userListView = (ListView) findViewById(R.id.userlist);
 	}
 
@@ -57,10 +55,10 @@ public class UserListActivity extends CrudActivity {
 	private void setListViewAdapter(List<User> userList) {
 		UserAdapter userAdapter = new UserAdapter(this,
 				R.layout.userlistview_item_row, userList);
-		
+
 		userListView.setAdapter(userAdapter);
 	}
-	
+
 	public void searchUsers(View view) {
 		// TODO: Add search feature here!!!
 	}
@@ -69,7 +67,7 @@ public class UserListActivity extends CrudActivity {
 	protected void onCreate() {
 		Intent intent = new Intent(this, EditUserActivity.class);
 		intent.putExtra(EXTRA_MODE, CREATE_MODE);
-		
+
 		startActivityForResult(intent, 1);
 	}
 
@@ -77,7 +75,7 @@ public class UserListActivity extends CrudActivity {
 	protected void onEdit(AdapterContextMenuInfo info) {
 		User user;
 		user = (User) userListView.getAdapter().getItem(info.position);
-		
+
 		Intent intent = new Intent(this, EditUserActivity.class);
 		intent.putExtra(EXTRA_MODE, EDIT_MODE);
 		intent.putExtra(EXTRA_USER, user.getId());
@@ -90,14 +88,14 @@ public class UserListActivity extends CrudActivity {
 		User user;
 		UserService service = UserServiceImpl.createService(getHelper());
 		String message = getString(R.string.changes_failed);
-		
+
 		user = (User) userListView.getAdapter().getItem(info.position);
-		
+
 		try {
 			service.delete(user);
 			initializeData();
 			message = getString(R.string.changes_ok);
-		} catch(Exception e) {
+		} catch (Exception e) {
 			Log.e(LOG_TAG, "Cannot delete record", e);
 		}
 		Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
@@ -107,11 +105,29 @@ public class UserListActivity extends CrudActivity {
 	protected void onResult() {
 		initializeData();
 	}
-	
+
 	@Override
-	protected void onCustomContextMenu(ContextMenu menu) {}
+	protected void onCustomContextMenu(ContextMenu menu) {
+		menu.add(1, SALE_REPORT_MENU_ID, 1, getString(R.string.sale_report));
+	}
 
 	@Override
 	protected void onCustomContextItemSelected(AdapterContextMenuInfo info,
-			int menuId) {}
+			int menuId) {
+
+		User user = (User) userListView.getAdapter().getItem(info.position);
+
+		switch (menuId) {
+		case SALE_REPORT_MENU_ID:
+			sellerReport(user);
+		}
+	}
+
+	private void sellerReport(User user) {
+		Intent intent = new Intent(this, SaleReportActivity.class);
+		intent.putExtra(EXTRA_REPORT_MODE, SALE_REPORT_SELLER);
+		intent.putExtra(EXTRA_REPORT_FILTER_ID, user.getId());
+
+		startActivity(intent);
+	}
 }

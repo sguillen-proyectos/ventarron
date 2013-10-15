@@ -78,16 +78,22 @@
 
     <!-- Sales common strings -->
     <string name="title_activity_sale_selected_product_list">SaleSelectedProductListActivity</string>
+    <string name="title_activity_sale_report">SaleReportActivity</string>
     <string name="start_sale">Iniciar Venta</string>
     <string name="finish_sale">Finalizar Venta</string>
     <string name="title_activity_sale_product_list">SaleProductListActivity</string>
     <string name="sale_select_products">Seleccionar Productos</string>
     <string name="sale_add_quantity">Asigne la cantidad a vender</string>
     <string name="sale_quantity">Se venderán:</string>
-	<string name="sale_no_products_selected">No se seleccionó ningún elemento.</string>
-	<string name="sale_finish_sale">¿Está seguro que desea finalizar la venta?</string>
-	<string name="sale">Venta</string>
-	<string name="sale_finished">Venta finalizada</string>
-	<string name="sale_price">A pagar:</string>    
-
+    <string name="sale_no_products_selected">No se seleccionó ningún elemento.</string>
+    <string name="sale_finish_sale">¿Está seguro que desea finalizar la venta?</string>
+    <string name="sale">Venta</string>
+    <string name="sale_finished">Venta finalizada</string>
+    <string name="sale_price">A pagar:</string>
+    <string name="sale_report">Reporte de Ventas</string>
+    <string name="sale_total_quantity">Cantidad total:</string>
+    <string name="sale_total_price">Total pagado:</string>
+    <string name="sale_date">Fecha:</string>
+    <string name="sale_no_quantity_defined">No se puede realizar operación. Hay elementos sin una cantidad especificada</string>
+    
 </resources>

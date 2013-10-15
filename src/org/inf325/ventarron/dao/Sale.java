@@ -13,6 +13,13 @@ public class Sale {
 	private int sellerId;
 	@DatabaseField(canBeNull = false)
 	private long date;
+	// I know these fields should not be table columns
+	// but as it's on a device it has to 
+	// consume less processing (battery). That's why.
+	@DatabaseField
+	private long quantity;
+	@DatabaseField
+	private double total;
 	
 	public int getId() {
 		return id;
@@ -37,5 +44,17 @@ public class Sale {
 	}
 	public void setSellerId(int sellerId) {
 		this.sellerId = sellerId;
+	}
+	public long getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(long quantity) {
+		this.quantity = quantity;
+	}
+	public double getTotal() {
+		return total;
+	}
+	public void setTotal(double total) {
+		this.total = total;
 	}
 }

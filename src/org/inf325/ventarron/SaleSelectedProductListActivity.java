@@ -78,11 +78,19 @@ public class SaleSelectedProductListActivity extends
 	private void setListViewAdapter() {
 		SaleItemAdapter adapter = new SaleItemAdapter(this,
 				R.layout.saleitemlistview_item_row, saleItems);
-		
+
 		productListView.setAdapter(adapter);
 	}
 
 	public void finishSale(View view) {
+		if (!valid(saleItems)) {
+			MessageBox.alert(this,
+					getString(R.string.sale_no_quantity_defined),
+					getString(R.string.alert));
+			
+			return;
+		}
+		
 		String msg = getString(R.string.sale_finish_sale);
 		String title = getString(R.string.sale);
 		MessageBox.confirm(this, msg, title, new OnClickListener() {
@@ -92,13 +100,22 @@ public class SaleSelectedProductListActivity extends
 			}
 		});
 	}
+	
+	private boolean valid(List<SaleItem> items) {
+		for (SaleItem item : items) {
+			if (item.getQuantity() == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	private void finishSale() {
 		SaleService saleService = SaleServiceImpl.createService(getHelper());
 		saleService.createSale(saleItems, sellerId, clientId);
-		
+
 		Toast.makeText(this, R.string.sale_finished, Toast.LENGTH_SHORT).show();
-		
+
 		Intent intent = new Intent(this, ClientListActivity.class);
 		intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
 		startActivity(intent);
